@@ -1,6 +1,6 @@
 # Guia Completo: Configuração e Desenvolvimento em Angular
 
-Este guia detalha o processo completo desde a configuração inicial do ambiente até a criação e utilização de componentes e serviços em um projeto Angular.
+Este guia detalha o processo completo desde a configuração inicial do ambiente até a criação e utilização de componentes e serviços em um projeto Angular utilizando uma arquitetura tradicional com módulos.
 
 ## 📌 Pré-requisitos
 
@@ -22,10 +22,10 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 
 ### 2. Criação do Projeto
 
-Execute o comando abaixo para criar um projeto Angular com rotas e componentes independentes (standalone):
+Execute o comando abaixo para criar um projeto Angular com módulos, roteamento, SCSS e Server-Side Rendering (SSR):
 
 ```bash
-ng new nome-do-projeto --routing --standalone
+ng new nome-do-projeto --standalone=false --minimal=true --routing=true --style=scss --ssr=true --directory .
 ```
 
 ---
@@ -44,10 +44,10 @@ src/
 
 ## 🧩 Criação de Componentes
 
-Para criar um componente standalone:
+Para criar um componente tradicional com SCSS separado:
 
 ```bash
-ng generate component components/nome-componente --standalone
+ng generate component components/nome-componente --inline-template=false --inline-style=false --style=scss
 ```
 
 ### Exemplo Básico de Componente
@@ -55,9 +55,8 @@ ng generate component components/nome-componente --standalone
 ```typescript
 @Component({
   selector: 'app-exemplo',
-  standalone: true,
   templateUrl: './exemplo.component.html',
-  styleUrls: ['./exemplo.component.css']
+  styleUrls: ['./exemplo.component.scss']
 })
 export class ExemploComponent {
   titulo = 'Componente Exemplo';
